@@ -1,9 +1,6 @@
-import tkinter as tk
-from tkinter import simpledialog, messagebox
-
 from lexer import Lexer
 from parser import Parser
-from display_tree import dibujar_arbol
+from DibujarArbol import dibujar_arbol
 
 # Gramática, atributos y conjuntos
 gramatica = """
@@ -32,45 +29,59 @@ P = [
     'F → num'
 ]
 
-ventana = tk.Tk()
-ventana.title("Evaluador y Árbol Decorado de Expresiones Aritméticas")
-
-def mostrar_texto(titulo, texto):
-    vent = tk.Toplevel()
-    vent.title(titulo)
-    txt = tk.Text(vent, wrap='word')
-    txt.insert('1.0', texto)
-    txt.config(state='disabled')
-    txt.pack(expand=True, fill='both')
-
 def mostrar_gramatica():
-    mostrar_texto("Gramática", gramatica)
+    print("\n" + gramatica + "\n")
 
 def mostrar_atributos():
-    mostrar_texto("Atributos", atributos)
+    print("\n" + atributos + "\n")
 
 def mostrar_conjuntos():
-    conjuntos_texto = f"F (Terminales): {F}\nS (Inicial): {S}\nP (Producciones):\n  " + '\n  '.join(P)
-    mostrar_texto("Conjuntos F, S, P", conjuntos_texto)
+    print(f"\nF (Terminales): {F}")
+    print(f"S (Inicial): {S}")
+    print("P (Producciones):")
+    for p in P:
+        print(f"  {p}")
+    print()
 
 def evaluar_expresion():
-    expr = simpledialog.askstring("Entrada", "Ingrese expresión aritmética:")
-    if expr:
-        try:
-            lexer = Lexer(expr)
-            parser = Parser(lexer)
-            res = parser.parse()
-            if parser.current_token is not None:
-                messagebox.showerror("Error", "Expresión con tokens extra no procesados")
-                return
-            arbol_str = dibujar_arbol(res.nodo)
-            mostrar_texto("Resultado y Árbol Decorado", f"Resultado: {res.valor}\n\nÁrbol decorado:\n{arbol_str}")
-        except Exception as e:
-            messagebox.showerror("Error", str(e))
+    expr = input("Ingrese expresión aritmética: ")
+    try:
+        lexer = Lexer(expr)
+        parser = Parser(lexer)
+        res = parser.parse()
+        if parser.current_token is not None:
+            print("Error: Expresión con tokens extra no procesados")
+            return
+        arbol_str = dibujar_arbol(res.nodo)
+        print(f"\nResultado: {res.valor}\n")
+        print("Árbol decorado:")
+        print(arbol_str)
+        print()
+    except Exception as e:
+        print(f"Error: {e}\n")
 
-tk.Button(ventana, text="Mostrar Gramática", command=mostrar_gramatica).pack(fill='x')
-tk.Button(ventana, text="Mostrar Atributos", command=mostrar_atributos).pack(fill='x')
-tk.Button(ventana, text="Mostrar Conjuntos", command=mostrar_conjuntos).pack(fill='x')
-tk.Button(ventana, text="Calcular Expresión", command=evaluar_expresion).pack(fill='x')
+def menu():
+    while True:
+        print("\n--- Menú ---")
+        print("1. Mostrar Gramática")
+        print("2. Mostrar Atributos")
+        print("3. Mostrar Conjuntos F, S, P")
+        print("4. Calcular Expresión")
+        print("5. Salir")
+        opcion = input("Seleccione una opción (1-5): ")
+        if opcion == '1':
+            mostrar_gramatica()
+        elif opcion == '2':
+            mostrar_atributos()
+        elif opcion == '3':
+            mostrar_conjuntos()
+        elif opcion == '4':
+            evaluar_expresion()
+        elif opcion == '5':
+            print("Saliendo...")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
 
-ventana.mainloop()
+if __name__ == "__main__":
+    menu()
