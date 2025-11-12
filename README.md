@@ -8,11 +8,20 @@ Implementacion ETDS para una Gramatica independiente de contexto la cual pueda h
 ## FuncionamientoPrograma 
 
 Para que el programa se ejecute tenemos que tener todos los archivos descargados o como se desarrollo desde un workspace .
+
+
     - Todo se puede descargar por medio de este comando en la terminal : 
+
+
         ```bash 
             git clone https://github.com/samuelleyton2006/Traduccion-Dirigida-Por-Sintaxis-.git
         ```
+
+
 Ya estando dentro de la carpeta donde se haya descargado , Unicamente corremos este comando en la terminal : 
+
+
+
     ```
         python Main.py
     ```
