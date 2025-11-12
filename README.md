@@ -12,7 +12,7 @@ Para que el programa se ejecute tenemos que tener todos los archivos descargados
 - Todo se puede descargar por medio de este comando en la terminal : 
 
 
-        ```bash 
+        ``` bash 
         git clone https://github.com/samuelleyton2006/Traduccion-Dirigida-Por-Sintaxis-.git
         ```
 
