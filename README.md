@@ -13,7 +13,7 @@ Para que el programa se ejecute tenemos que tener todos los archivos descargados
 
 
         ```bash 
-            git clone https://github.com/samuelleyton2006/Traduccion-Dirigida-Por-Sintaxis-.git
+        git clone https://github.com/samuelleyton2006/Traduccion-Dirigida-Por-Sintaxis-.git
         ```
 
 
@@ -21,7 +21,7 @@ Ya estando dentro de la carpeta donde se haya descargado , Unicamente corremos e
 
 
     ```
-        python Main.py
+    python Main.py
     ```
 
 <img src="Terminal.jpg">
